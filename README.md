@@ -1,6 +1,8 @@
 # mac_list_windows_pids
 Mac OS X:  list all windows title and their owner process ids
 
+See https://developer.apple.com/documentation/coregraphics/core_graphics_constants for more consts.
+
 ##Usage:  
 
 Tested on OS X Yosemite 10.10.5, Python 2.7

@@ -4,10 +4,7 @@ import Quartz
 
 #wl = Quartz.CGWindowListCopyWindowInfo( Quartz.kCGWindowListOptionOnScreenOnly | Quartz.kCGWindowListExcludeDesktopElements, Quartz.kCGNullWindowID)
 wl = Quartz.CGWindowListCopyWindowInfo( Quartz.kCGWindowListOptionAll, Quartz.kCGNullWindowID)
-
 wl = sorted(wl, key=lambda k: k.valueForKey_('kCGWindowOwnerPID'))
-
-#print wl
 
 print 'PID\tWinID\tonScreen\tx\ty\tw\th\tTitle\tSubTitle'
 
