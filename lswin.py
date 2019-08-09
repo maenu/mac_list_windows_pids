@@ -9,13 +9,14 @@ wl = sorted(wl, key=lambda k: k.valueForKey_('kCGWindowOwnerPID'))
 
 #print wl
 
-print 'PID'.rjust(7) + ' ' + 'WinID'.rjust(5) + '  ' + 'x,y,w,h'.ljust(21) + ' ' + '\t[Title] SubTitle'
-print '-'.rjust(7,'-') + ' ' + '-'.rjust(5,'-') + '  ' + '-'.ljust(21,'-') + ' ' + '\t-------------------------------------------'
+print 'PID'.rjust(7) + ' ' + 'WinID'.rjust(5) + ' ' + 'onScreen'.rjust(8) + '  ' + 'x,y,w,h'.ljust(21) + ' ' + '\t[Title] SubTitle'
+print '-'.rjust(7,'-') + ' ' + '-'.rjust(5,'-') + ' ' + '-'.rjust(8,'-') + '  ' + '-'.ljust(21,'-') + ' ' + '\t-------------------------------------------'
 
 for v in wl:
 	print ( \
 		str(v.valueForKey_('kCGWindowOwnerPID') or '?').rjust(7) + \
 		' ' + str(v.valueForKey_('kCGWindowNumber') or '?').rjust(5) + \
+		' ' + str(v.valueForKey_('kCGWindowIsOnscreen') or '?').rjust(8) + \
 		' {' + ('' if v.valueForKey_('kCGWindowBounds') is None else \
 		 	( \
 			 	str(int(v.valueForKey_('kCGWindowBounds').valueForKey_('X')))     + ',' + \
