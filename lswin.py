@@ -9,23 +9,18 @@ wl = sorted(wl, key=lambda k: k.valueForKey_('kCGWindowOwnerPID'))
 
 #print wl
 
-print 'PID'.rjust(7) + ' ' + 'WinID'.rjust(5) + ' ' + 'onScreen'.rjust(8) + '  ' + 'x,y,w,h'.ljust(21) + ' ' + '\t[Title] SubTitle'
-print '-'.rjust(7,'-') + ' ' + '-'.rjust(5,'-') + ' ' + '-'.rjust(8,'-') + '  ' + '-'.ljust(21,'-') + ' ' + '\t-------------------------------------------'
+print 'PID\tWinID\tonScreen\tx\ty\tw\th\tTitle\tSubTitle'
 
 for v in wl:
-	print ( \
-		str(v.valueForKey_('kCGWindowOwnerPID') or '?').rjust(7) + \
-		' ' + str(v.valueForKey_('kCGWindowNumber') or '?').rjust(5) + \
-		' ' + str(v.valueForKey_('kCGWindowIsOnscreen') or '?').rjust(8) + \
-		' {' + ('' if v.valueForKey_('kCGWindowBounds') is None else \
-		 	( \
-			 	str(int(v.valueForKey_('kCGWindowBounds').valueForKey_('X')))     + ',' + \
-			 	str(int(v.valueForKey_('kCGWindowBounds').valueForKey_('Y')))     + ',' + \
-			 	str(int(v.valueForKey_('kCGWindowBounds').valueForKey_('Width'))) + ',' + \
-			 	str(int(v.valueForKey_('kCGWindowBounds').valueForKey_('Height'))) \
-		 	) \
-		 	).ljust(21) + \
-		'}' + \
-		'\t[' + ((v.valueForKey_('kCGWindowOwnerName') or '') + ']') + \
-		('' if v.valueForKey_('kCGWindowName') is None else (' ' + v.valueForKey_('kCGWindowName') or '')) \
+	bounds = v.valueForKey_('kCGWindowBounds')
+	print (\
+		str(v.valueForKey_('kCGWindowOwnerPID') or '') + \
+		'\t' + str(v.valueForKey_('kCGWindowNumber') or '') + \
+		'\t' + str(v.valueForKey_('kCGWindowIsOnscreen') or False) + \
+		'\t' + str('' if bounds is None else int(bounds.valueForKey_('X'))) + \
+		'\t' + str('' if bounds is None else int(bounds.valueForKey_('Y'))) + \
+		'\t' + str('' if bounds is None else int(bounds.valueForKey_('Width'))) + \
+		'\t' + str('' if bounds is None else int(bounds.valueForKey_('Height'))) + \
+		'\t' + (v.valueForKey_('kCGWindowOwnerName') or '') + \
+		'\t' + (v.valueForKey_('kCGWindowName') or '') \
 	).encode('utf8')
